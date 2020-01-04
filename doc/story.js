@@ -1,0 +1,1 @@
+nohup java -jar dubbo-admin-server-0.1.jar   --server.port=9000  &

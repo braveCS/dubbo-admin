@@ -29,7 +29,7 @@ import org.apache.dubbo.admin.service.ProviderService;
 import org.apache.dubbo.admin.service.impl.GenericServiceImpl;
 import org.apache.dubbo.metadata.definition.model.FullServiceDefinition;
 import org.apache.dubbo.metadata.definition.model.MethodDefinition;
-import org.apache.dubbo.metadata.identifier.MetadataIdentifier;
+import org.apache.dubbo.metadata.report.identifier.MetadataIdentifier;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -65,8 +65,7 @@ public class ServiceTestController {
                                        @RequestParam String method) {
         Map<String, String> info = ConvertUtil.serviceName2Map(service);
         MetadataIdentifier identifier = new MetadataIdentifier(info.get(Constants.INTERFACE_KEY),
-                info.get(Constants.VERSION_KEY),
-                info.get(Constants.GROUP_KEY), Constants.PROVIDER_SIDE, application);
+                info.get(Constants.VERSION_KEY), info.get(Constants.GROUP_KEY),null,null);
         String metadata = providerService.getProviderMetaData(identifier);
         MethodMetadata methodMetadata = null;
         if (metadata != null) {

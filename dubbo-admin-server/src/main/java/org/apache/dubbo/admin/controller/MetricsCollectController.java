@@ -32,7 +32,7 @@ import org.apache.dubbo.admin.service.MetricsService;
 import org.apache.dubbo.admin.service.ProviderService;
 import org.apache.dubbo.admin.service.impl.MetrcisCollectServiceImpl;
 import org.apache.dubbo.metadata.definition.model.FullServiceDefinition;
-import org.apache.dubbo.metadata.identifier.MetadataIdentifier;
+import org.apache.dubbo.metadata.report.identifier.MetadataIdentifier;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -103,8 +103,8 @@ public class MetricsCollectController {
         if (providers.size() > 0) {
             Provider provider = providers.get(0);
             String service = provider.getService();
-            MetadataIdentifier providerIdentifier = new MetadataIdentifier(Tool.getInterface(service), Tool.getVersion(service), Tool.getGroup(service),
-                    Constants.PROVIDER_SIDE, provider.getApplication());
+            MetadataIdentifier providerIdentifier = new MetadataIdentifier(Tool.getInterface(service),
+                    Tool.getVersion(service), Tool.getGroup(service),null,null);
             String metaData = providerService.getProviderMetaData(providerIdentifier);
             FullServiceDefinition providerServiceDefinition = new Gson().fromJson(metaData, FullServiceDefinition.class);
             Map<String, String> parameters = providerServiceDefinition.getParameters();
@@ -114,8 +114,8 @@ public class MetricsCollectController {
             if (consumers.size() > 0) {
                 Consumer consumer = consumers.get(0);
                 String service = consumer.getService();
-                MetadataIdentifier consumerIdentifier = new MetadataIdentifier(Tool.getInterface(service), Tool.getVersion(service), Tool.getGroup(service),
-                        Constants.CONSUMER_SIDE, consumer.getApplication());
+                MetadataIdentifier consumerIdentifier = new MetadataIdentifier(Tool.getInterface(service),
+                        Tool.getVersion(service), Tool.getGroup(service), null,null);
                 String metaData = consumerService.getConsumerMetadata(consumerIdentifier);
                 Map<String, String> consumerParameters = new Gson().fromJson(metaData, Map.class);
                 configMap.put(consumerParameters.get(Constants.METRICS_PORT), consumerParameters.get(Constants.METRICS_PROTOCOL));

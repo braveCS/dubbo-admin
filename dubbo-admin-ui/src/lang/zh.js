@@ -125,7 +125,7 @@ export default {
   },
   configManage: '配置管理',
   configCenterAddress: '配置中心地址',
-  searchDubboConfig: '搜索Dubbo配置',
+  searchDubboConfig: '搜索Dubbo配置【承担两个职责:1)外部化配置,2)服务治理。服务治理规则的存储与通知。这里只使用到第二点，第一点统一收口在global.properties里】',
   createNewDubboConfig: '新建Dubbo配置',
   scope: '范围',
   name: '名称',
@@ -155,7 +155,7 @@ export default {
   },
   methods: '方法列表',
   testModule: {
-    searchServiceHint: '服务ID, org.apache.dubbo.demo.api.DemoService, 使用 * 进行模糊查找, 按回车键查询'
+    searchServiceHint: '服务类名, 如：org.apache.dubbo.demo.api.DemoService'
   },
   userName: '用户名',
   password: '密码',
